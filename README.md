@@ -5,36 +5,37 @@ The technique uses a timer to break down work into intervals, traditionally 25 m
 
 You will implement a Pomodoro timer that follows these steps (simplified from the original technique):
 
-Set the focus duration (default to 25 minutes, no less than 5 or more than 60).
-Set the break duration (default to 5 minutes, no less than 1 or more than 15).
-When the user clicks the "play" button, the timer starts.
-When the focus time expires, an alarm plays and then the break timer starts.
-When the break time expires, the alarm plays again and then the focus timer starts.
+1. Set the focus duration (default to 25 minutes, no less than 5 or more than 60).
+1. Set the break duration (default to 5 minutes, no less than 1 or more than 15).
+1. When the user clicks the "play" button, the timer starts.
+1. When the focus time expires, an alarm plays and then the break timer starts.
+1. When the break time expires, the alarm plays again and then the focus timer starts.
+
 This application uses Bootstrap 4 for styling and Open-Iconic icons for icons.
 
 This project is designed to test your ability to work with rendering and state management using React. Before taking on this module, you should be comfortable with the following:
 
-* Installing packages via NPM.
-* Running tests from the command line.
-* Writing React function components.
-* Using hooks like useState()
-* Debugging React code through console output
-* Project setup
+- Installing packages via NPM.
+- Running tests from the command line.
+- Writing React function components.
+- Using hooks like useState()
+- Debugging React code through console output
+- Project setup
 
 Follow the instructions below to get this project up and running on your own machine:
 
 ## Project Setup
 
-* Sync this challenge with your computer so that you can work on the project locally.
-* Run `npm install`.
+- Sync this challenge with your computer so that you can work on the project locally.
+- Run `npm install`.
 
 To run the tests, you can run the following command:
 
-```npm test```
+`npm test`
 
 You can run the application using the following command.
 
-```npm start```
+`npm start`
 
 ## Initial Screen
 
@@ -50,7 +51,7 @@ After the user clicks the "play" button, the buttons to change the focus and bre
 
 The session timer shows the type of session, either "Focusing" or "On Break", the total duration of the session, the time remaining, and a progress bar showing how much of the session is complete.
 
-**Hint:**```In React, if you want to hide/show something, use conditional rendering rather than CSS styles. In general, conditional rendering is preferred. The tests in this project require the use of conditional rendering to show/hide the session timer.```
+**Hint:**`In React, if you want to hide/show something, use conditional rendering rather than CSS styles. In general, conditional rendering is preferred. The tests in this project require the use of conditional rendering to show/hide the session timer.`
 
 ## Paused Session Screen
 
@@ -88,11 +89,11 @@ This should be sufficient to implement the pomodoro timer.
 
 Use the following code to play an alarm when the time expires. You can upload your own sound or use the one provided in the link below.
 
-```new Audio(`https://bigsoundbank.com/UPLOAD/mp3/1482.mp3`).play();```
+`` new Audio(`https://bigsoundbank.com/UPLOAD/mp3/1482.mp3`).play(); ``
 
 ## classNames function
 
-```import classNames from "../utils/class-names";```
+`import classNames from "../utils/class-names";`
 
 Use this function to dynamically assign the className property of react components.
 
@@ -136,13 +137,13 @@ secondsToDuration(930); // '15:30'
 If you have a failing test, but the application appears to be working correctly when you view it in the browser, try the following debugging steps:
 
 1. In `./src/pomodoro/Pomodoro.js`, find isTimerRunning ? 1000 : null and temporarily change it to isTimerRunning ? 100 : null.
-This will make the timer run 10 times faster, making it easier to debug.
+   This will make the timer run 10 times faster, making it easier to debug.
 1. Start the app and open it in the browser.
 1. Set the focus and break times to the minimum values.
 1. Click the play button to start the pomodoro timer.
 1. Observe the application going through multiple focus/break sessions. Let it run through at least two transitions from "Focusing" to "On break" and back to "Focusing", just like a real user.
-    * Check the values displayed in session title, session sub-title, and progress bar.
-    * At this point you will likely see the problem.
+   - Check the values displayed in session title, session sub-title, and progress bar.
+   - At this point you will likely see the problem.
 1. In `./src/pomodoro/Pomodoro.js`, change isTimerRunning ? 100 : null back to isTimerRunning ? 1000 : null so the timer runs at normal speed.
 
 Note: In addition to needing to pass the tests and requirements in the instructions here, please review the Rubric Requirements for the human-graded part of this project in your Thinkful curriculum page.
