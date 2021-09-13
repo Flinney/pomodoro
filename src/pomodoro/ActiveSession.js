@@ -6,10 +6,12 @@ export default function ActiveSession({
   focusDuration,
   breakDuration,
 }) {
+
+  // conditional rendering outside of JSX  
   if (!session) {
     return null;
   }
-
+  // determine which duration is displayed in session
   const currentDuration =
     session.label === "Focusing" ? focusDuration : breakDuration;
 

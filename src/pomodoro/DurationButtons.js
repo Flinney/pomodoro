@@ -8,6 +8,7 @@ export default function DurationButtons({
   setFocusDuration,
   setBreakDuration,
 }) {
+  // Add unique button handlers to change state with button clicks
   function handleFocusIncrease() {
     setFocusDuration((duration) => Math.min(60, duration + 5));
   }
