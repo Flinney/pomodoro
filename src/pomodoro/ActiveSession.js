@@ -14,11 +14,11 @@ export default function ActiveSession({ session, focusDuration, breakDuration })
                 <div className="col">
                 {/* TODO: Update message below to include current session (Focusing or On Break) total duration */}
                     <h2 data-testid="session-title">
-                        {session?.label} for {minutesToDuration(currentDuration)} minutes
+                        {session.label} for {minutesToDuration(currentDuration)} minutes
                     </h2>
                 {/* TODO: Update message below correctly format the time remaining in the current session */}
                     <p className="lead" data-testid="session-sub-title">
-                        {secondsToDuration(session?.timeRemaining)} remaining
+                        {secondsToDuration(session.timeRemaining)} remaining
                     </p>
                 </div>
             </div>
@@ -30,8 +30,8 @@ export default function ActiveSession({ session, focusDuration, breakDuration })
                             role="progressbar"
                             aria-valuemin="0"
                             aria-valuemax="100"
-                            aria-valuenow="0" // TODO: Increase aria-valuenow as elapsed time increases
-                            style={{ width: "0%" }} // TODO: Increase width % as elapsed time increases
+                            aria-valuenow={100 - (session.timeRemaining/(currentDuration*60))*100} // TODO: Increase aria-valuenow as elapsed time increases
+                            style={{ width: `${100 - (session.timeRemaining/(currentDuration*60))*100}%` }} // TODO: Increase width % as elapsed time increases
                         />
                     </div>
                 </div>
