@@ -96,9 +96,23 @@ function Pomodoro() {
     });
   }
 
-  function handleDecreaseFocus() {
-    setFocusDuration(duration => duration === 5 ? duration : duration - 5)
+  function handleFocusIncrease() {
+    setFocusDuration(duration => Math.min(60, duration +5))
   }
+
+  function handleFocusDecrease() {
+    setFocusDuration(duration => Math.max(5, duration - 5))
+  }
+
+  function handleBreakIncrease() {
+    setBreakDuration(duration => Math.min(15, duration + 1))
+  }
+
+  function handleBreakDecrease() {
+    setBreakDuration(duration => Math.max(1, duration - 1))
+  }
+
+
 
   return (
     <div className="pomodoro">
@@ -115,7 +129,7 @@ function Pomodoro() {
                 type="button"
                 className="btn btn-secondary"
                 data-testid="decrease-focus"
-                onClick={handleDecreaseFocus}
+                onClick={handleFocusDecrease}
                 disabled={session}
               >
                 <span className="oi oi-minus" />
@@ -125,6 +139,8 @@ function Pomodoro() {
                 type="button"
                 className="btn btn-secondary"
                 data-testid="increase-focus"
+                onClick={handleFocusIncrease}
+                disabled={session}
               >
                 <span className="oi oi-plus" />
               </button>
@@ -136,7 +152,7 @@ function Pomodoro() {
             <div className="input-group input-group-lg mb-2">
               <span className="input-group-text" data-testid="duration-break">
                 {/* TODO: Update this text to display the current break session duration */}
-                Break Duration: 05:00
+                Break Duration: {minutesToDuration(breakDuration)}
               </span>
               <div className="input-group-append">
                 {/* TODO: Implement decreasing break duration and disable during a focus or break session*/}
@@ -144,6 +160,8 @@ function Pomodoro() {
                   type="button"
                   className="btn btn-secondary"
                   data-testid="decrease-break"
+                  onClick={handleBreakDecrease}
+                  disabled={session}
                 >
                   <span className="oi oi-minus" />
                 </button>
@@ -152,6 +170,8 @@ function Pomodoro() {
                   type="button"
                   className="btn btn-secondary"
                   data-testid="increase-break"
+                  onClick={handleBreakIncrease}
+                  disabled={session}
                 >
                   <span className="oi oi-plus" />
                 </button>
@@ -189,6 +209,8 @@ function Pomodoro() {
               className="btn btn-secondary"
               data-testid="stop"
               title="Stop the session"
+              onClick=""
+              disabled={!session}
             >
               <span className="oi oi-media-stop" />
             </button>
@@ -201,7 +223,7 @@ function Pomodoro() {
           <div className="col">
             {/* TODO: Update message below to include current session (Focusing or On Break) total duration */}
             <h2 data-testid="session-title">
-              {session?.label} for 25:00 minutes
+              {session?.label} for {secondsToDuration(session?.timeRemaining)} minutes
             </h2>
             {/* TODO: Update message below correctly format the time remaining in the current session */}
             <p className="lead" data-testid="session-sub-title">
