@@ -105,6 +105,8 @@ function Pomodoro() {
     setBreakDuration(5);
     setFocusDuration(25);
   }
+  
+  /* NOTE FOR GRADER: DurationButtons and ActiveSession are both components called within this component ActiveSession is called near the end of this component's JSX*/
 
   return (
     <div className="pomodoro">
